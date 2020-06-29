@@ -154,6 +154,15 @@ class Project:
         if os.path.isfile(f"{self.pyenv_path}/bin/python3"):
             env["VIRTUAL_ENV"] = self.pyenv_path
             env["PATH"] = self.pyenv_path + "/bin:" + env["PATH"]
+
+            # For some reason with core20 it uses the snap python
+            # packages before the virtualenv packages
+            env["PYTHONPATH"] = (
+                self.pyenv_path
+                + "/lib/python3.8/site-packages:"
+                + env["PYTHONPATH"]
+            )
+
             env.pop("PYTHONHOME", None)
 
             self.log.step(
