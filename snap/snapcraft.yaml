@@ -30,6 +30,7 @@ parts:
       gcc -g -O0 -Wall -Wstrict-prototypes -fPIC -shared lib.c -o $SNAPCRAFT_PART_INSTALL/lib/semwraplib.so -ldl
     build-packages:
       - build-essential
+      - python2
 
   dotrun-module:
     plugin: python
@@ -60,11 +61,19 @@ plugs:
     interface: personal-files
     read:
       - $HOME/.yarnrc
+  docker-cli:
+    interface: docker
+  docker-executables:
+    content: docker-executables
+    default-provider: docker
+    interface: content
+    target: $SNAP/docker-env
 
 apps:
   dotrun:
     command: bin/dotrun
     environment:
+      PATH: $SNAP/docker-env:$PATH
       LANG: C.UTF-8
       LC_ALL: C.UTF-8
       LC_CTYPE: C.UTF-8
@@ -77,3 +86,5 @@ apps:
       - process-control
       - dot-npmrc
       - dot-yarnrc
+      - docker-cli
+      - docker-executables
