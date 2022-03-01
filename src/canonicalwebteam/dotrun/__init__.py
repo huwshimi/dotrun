@@ -149,7 +149,7 @@ if __name__ == "__main__":
         src = os.path.dirname(os.path.abspath(__file__)).replace(
             "/Contents/Resources", "/Contents/Frameworks"
         )
-        dyld_library_path = os.environ["DYLD_LIBRARY_PATH"]
+        dyld_library_path = src
         os.environ[
             "DYLD_LIBRARY_PATH"
         ] = f"{src}{os.pathsep}{dyld_library_path}"

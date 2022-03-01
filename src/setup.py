@@ -15,6 +15,7 @@ if sys.platform == "darwin":
         options={
             "py2app": {
                 "argv_emulation": True,
+                "no_chdir": True,
                 "packages": [
                     "ipdb",
                     "black",
@@ -22,6 +23,7 @@ if sys.platform == "darwin":
                     "termcolor",
                     "virtualenv",
                     "nodeenv",
+                    "python-dotenv",
                 ],
             }
         },
@@ -38,6 +40,7 @@ setup(
         "termcolor",
         "virtualenv",
         "nodeenv",
+        "python-dotenv",
     ],
     entry_points={
         "console_scripts": ["idotrun = canonicalwebteam.dotrun:cli"]
